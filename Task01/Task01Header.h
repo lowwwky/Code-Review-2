@@ -13,6 +13,7 @@
 class StackWork {
 private:
 	int fill_amount_of_digits();
+	int fill_d_value();
 	void fill_stack(int amount_of_elements, Stack& stack);
 public:
 	void show_work();
