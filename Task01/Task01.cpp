@@ -123,6 +123,36 @@ int StackWork::fill_amount_of_digits() {
 }
 
 /**
+ * Запрашивает у пользователя число для добавления в стек
+ *
+ * Необходимо убедиться, что пользователь вводит корректное
+ * положительное число, так как отрицательное количество элементов
+ * или ноль не имеют смысла для создания списка.
+ *
+ * @return Целое число - значение для заполнения
+ */
+int StackWork::fill_d_value() {
+    int d_value = 0;
+    CheckInput errors;
+    std::string temporary_value;
+    while (true) {
+        std::cout << "Введите целое число D для добавления в стек: ";
+
+        std::getline(std::cin, temporary_value);
+        if (errors.is_valid_number(temporary_value)) {
+            d_value = errors.string_to_int(temporary_value);
+            break;
+            
+        }
+        else {
+            std::cout << "Ошибка ввода. Попробуйте ещё раз.\n";
+        }
+
+    }
+    return d_value;
+}
+
+/**
  * Заполняет стек указанным количеством элементов, запрашивая их у пользователя.
  *
  * @param amount_of_elements Количество элементов для добавления в стек (должно быть положительным)
@@ -196,12 +226,22 @@ void StackWork::show_work() {
     //cout << "Элементы в стеке: ";
     std::cout << "Элементы в стеке: ";
     stack.show();
-    int D;
+
+// FIX_ME: Абсолюнто отсуствует проверка на корректность вводимого числа.
+// FIX_ME: Название должно быть осмысленным.
+// FIX_ME: в Google Codestyle Guide названия переменных пишутся как lower_case_with_underscores.
+    //int D;
     //cout << "Введите значение D для добавления в стек: ";
     //cin >> D;
-    std::cout << "Введите значение D для добавления в стек: ";
-    std::cin >> D;
-    stack.push(D);
+    //std::cout << "Введите значение D для добавления в стек: ";
+    //std::cin >> D;
+
+    int d_value;
+    d_value = fill_d_value();
+
+    //stack.push(D);
+    stack.push(d_value);
+    
     //cout << "Элементы в новом стеке: ";
     std::cout << "Элементы в новом стеке: ";
     stack.show();
